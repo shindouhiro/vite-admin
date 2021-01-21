@@ -9,5 +9,10 @@ export default {
   },
   alias: {
     '/@/': `${resolve(__dirname, '.', 'src')}/`
+  },
+  optimizeDeps: {
+    include: [
+      'axios'
+    ]
   }
 }

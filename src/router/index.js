@@ -8,6 +8,7 @@ export default createRouter({
     {
       path: '/home',
       component: () => import('/@/view/Home.vue')
+
     },
     {
       path: '/about',

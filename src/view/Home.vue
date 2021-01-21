@@ -1,19 +1,18 @@
 <template>
-  {{ a?.b}}
+    {{ a?.b}}
 </template>
 <script>
 export default {
     data() {
-      return {
-        a: {
-          b: 123,
-          d: 456
-          e: 456
+        return {
+            a: {
+                b: 123,
+                d: 456
+            }
         }
-      }
     },
     methods: {
-    
+
     }
 }
 </script>
