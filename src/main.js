@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus';
-import 'element-plus/lib/theme-chalk/index.css';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 import App from './App.vue';
 import router from '/@/router/index.js'
 import store from '/@/store/index.js'
@@ -9,11 +9,10 @@ import request from '/@/untils/request.js'
 
 const app = createApp(App)
 app.config.globalProperties.$axios = request
-app.use(ElementPlus)
+app.use(Antd);
 app.use(router)
 app.use(store)
 app.mount('#app')
-
 
 
 

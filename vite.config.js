@@ -12,7 +12,8 @@ export default {
   },
   optimizeDeps: {
     include: [
-      'axios'
+      'axios',
+      '@ant-design/icons-vue',
     ]
   }
 }

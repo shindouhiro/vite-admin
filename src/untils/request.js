@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+// import { ElMessage } from 'element-plus'
 
 // 创建 axios 实例
 const request = axios.create({
@@ -17,14 +17,14 @@ const errorHandler = (error) => {
     // const token = storage.get(ACCESS_TOKEN)
     const token = 'token'
     if (error.response.status === 403) {
-      ELMessage.error({
-        message: data.message,
-      })
+      // ELMessage.error({
+      //   message: data.message,
+      // })
     }
     if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
-      ELMessage.error({
-        message: 'Authorization verification failed'
-      })
+      // ELMessage.error({
+      //   message: 'Authorization verification failed'
+      // })
       if (token) {
         // store.dispatch('Logout').then(() => {
         //   setTimeout(() => {

@@ -39,7 +39,7 @@ export default {
     }
     #aside {
         background: lightblue;
-        width: 200px;
+        width: 256px;
     }
     #main {
         background: lightyellow;

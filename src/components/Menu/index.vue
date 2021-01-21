@@ -1,58 +1,94 @@
 <template>
-  <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-    <el-submenu index="1">
-      <template #title>
-        <i class="el-icon-location"></i>
-        <span>导航一</span>
-      </template>
-      <el-menu-item-group>
-        <template #title>分组一</template>
-        <el-menu-item index="1-1"><router-link to="/home">Home</router-link></el-menu-item>
-        <el-menu-item index="1-2"><router-link to="/about">About</router-link></el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <template #title>选项4</template>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <template #title>导航二</template>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <i class="el-icon-document"></i>
-      <template #title>导航三</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <template #title>导航四</template>
-    </el-menu-item>
-  </el-menu>
+  <div style="width: 256px">
+    <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
+      <MenuUnfoldOutlined v-if="collapsed" />
+      <MenuFoldOutlined v-else />
+    </a-button>
+    <a-menu
+      v-model:openKeys="openKeys"
+      v-model:selectedKeys="selectedKeys"
+      mode="inline"
+      theme="dark"
+      :inline-collapsed="collapsed"
+    >
+      <a-menu-item key="1">
+        <PieChartOutlined />
+        <span>Option 1</span>
+      </a-menu-item>
+      <a-menu-item key="2">
+        <DesktopOutlined />
+        <span>Option 2</span>
+      </a-menu-item>
+      <a-menu-item key="3">
+        <InboxOutlined />
+        <span>Option 3</span>
+      </a-menu-item>
+      <a-sub-menu key="sub1">
+        <template #title>
+          <span><MailOutlined /><span>Navigation One</span></span>
+        </template>
+        <a-menu-item key="5">Option 5</a-menu-item>
+        <a-menu-item key="6">Option 6</a-menu-item>
+        <a-menu-item key="7">Option 7</a-menu-item>
+        <a-menu-item key="8">Option 8</a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="sub2">
+        <template #title>
+          <span><AppstoreOutlined /><span>Navigation Two</span></span>
+        </template>
+        <a-menu-item key="9">Option 9</a-menu-item>
+        <a-menu-item key="10">Option 10</a-menu-item>
+        <a-sub-menu key="sub3" title="Submenu">
+          <a-menu-item key="11">
+            Option 11
+          </a-menu-item>
+          <a-menu-item key="12">
+            Option 12
+          </a-menu-item>
+        </a-sub-menu>
+      </a-sub-menu>
+    </a-menu>
+  </div>
 </template>
-<style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    height: 100vh;
-  }
-</style>
 
 <script>
-  export default {
-    data() {
-      return {
-        isCollapse: false
-      };
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  PieChartOutlined,
+  MailOutlined,
+  DesktopOutlined,
+  InboxOutlined,
+  AppstoreOutlined,
+} from '@ant-design/icons-vue';
+export default {
+  components: {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    PieChartOutlined,
+    MailOutlined,
+    DesktopOutlined,
+    InboxOutlined,
+    AppstoreOutlined,
+  },
+  data() {
+    return {
+      collapsed: false,
+      selectedKeys: ['1'],
+      openKeys: ['sub1'],
+      preOpenKeys: ['sub1'],
+    };
+  },
+  watch: {
+    openKeys(val, oldVal) {
+      this.preOpenKeys = oldVal;
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
-  }
+  },
+  methods: {
+    toggleCollapsed() {
+      this.collapsed = !this.collapsed;
+      this.openKeys = this.collapsed ? [] : this.preOpenKeys;
+    },
+  },
+};
 </script>
