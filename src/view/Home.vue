@@ -6,7 +6,8 @@ export default {
     data() {
       return {
         a: {
-          b: 123
+          b: 123,
+          d: 456
         }
       }
     },
