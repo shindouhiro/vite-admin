@@ -8,6 +8,7 @@ export default {
         a: {
           b: 123,
           d: 456
+          e: 456
         }
       }
     },
