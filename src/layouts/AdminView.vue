@@ -24,11 +24,6 @@ import { defineAsyncComponent } from 'vue'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
 } from '@ant-design/icons-vue';
 export default {
   components: {
@@ -43,8 +38,7 @@ export default {
   },
   methods: {
     toggleWidth(collapsed) {
-      let aside = this.$refs.aside.style.width
-      !collapsed? aside='80px' : aside='250px'
+      !collapsed?  this.$refs.aside.style.width='80px' :  this.$refs.aside.style.width='250px'
     },
 
     toggleCollapsed() {
@@ -71,7 +65,6 @@ export default {
   display: flex;
 }
 #aside {
-  width: 256px;
   background: #001529;
 
 }
