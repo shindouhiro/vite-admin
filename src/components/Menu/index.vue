@@ -1,9 +1,5 @@
 <template>
   <div style="width: 256px">
-    <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
     <a-menu
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"

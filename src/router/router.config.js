@@ -31,12 +31,17 @@ export const constantRouterMap = [
     path: 'login',
     name: 'login',
     component: () => import('/@/views/user/Login.vue')
-  }
+  },
+
   ]
 },
 {
   path: '/404',
   component: () => import('/@/views/common/404.vue')
+},
+{
+  path: '/500',
+  component: () => import('/@/views/common/500.vue')
 }
 ] 
 
