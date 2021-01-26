@@ -1,8 +1,6 @@
 <template>
   <div style="width: 256px">
     <a-menu
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed"
@@ -49,8 +47,6 @@
 
 <script>
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   PieChartOutlined,
   MailOutlined,
   DesktopOutlined,
@@ -58,9 +54,10 @@ import {
   AppstoreOutlined,
 } from '@ant-design/icons-vue';
 export default {
+  props: {
+    collapsed: Boolean,
+  },
   components: {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
     PieChartOutlined,
     MailOutlined,
     DesktopOutlined,
@@ -69,7 +66,6 @@ export default {
   },
   data() {
     return {
-      collapsed: false,
       selectedKeys: ['1'],
       openKeys: ['sub1'],
       preOpenKeys: ['sub1'],
@@ -78,12 +74,6 @@ export default {
   watch: {
     openKeys(val, oldVal) {
       this.preOpenKeys = oldVal;
-    },
-  },
-  methods: {
-    toggleCollapsed() {
-      this.collapsed = !this.collapsed;
-      this.openKeys = this.collapsed ? [] : this.preOpenKeys;
     },
   },
 };

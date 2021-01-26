@@ -1,15 +1,17 @@
 <template>
   <div id="container">
     <div id="content">
-      <div id="aside">
-        <Menu />
+      <transition name="fade">
+      <div id="aside" style="width: 250px" ref="aside">
+        <Menu :collapsed="collapsed" />
       </div>
+      </transition>
       <div id="main">
         <div id="header">
-    <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
+          <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
+            <MenuUnfoldOutlined v-if="collapsed" />
+            <MenuFoldOutlined v-else />
+          </a-button>
           header
         </div>
         <router-view></router-view>
@@ -19,10 +21,37 @@
 </template>
 <script>
 import { defineAsyncComponent } from 'vue'
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  PieChartOutlined,
+  MailOutlined,
+  DesktopOutlined,
+  InboxOutlined,
+  AppstoreOutlined,
+} from '@ant-design/icons-vue';
 export default {
   components: {
-    Menu: defineAsyncComponent(() => import("/@/components/Menu/index.vue"))
-  }
+    Menu: defineAsyncComponent(() => import("/@/components/Menu/index.vue")),
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+  },
+  data() {
+    return {
+      collapsed: false,
+    }
+  },
+  methods: {
+    toggleWidth(collapsed) {
+      let aside = this.$refs.aside.style.width
+      !collapsed? aside='80px' : aside='250px'
+    },
+
+    toggleCollapsed() {
+      this.toggleWidth(this.collapsed)
+      this.collapsed = !this.collapsed;
+    },
+  },
 }
 </script>
 <style scoped>
