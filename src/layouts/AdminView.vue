@@ -35,8 +35,11 @@ export default {
     }
   },
   methods: {
+    setMenuWidth(width) {
+     this.$refs.aside.style.width = width
+    },
     toggleWidth(collapsed) {
-      !collapsed?  this.$refs.aside.style.width='80px' :  this.$refs.aside.style.width='256px'
+      !collapsed?  this.setMenuWidth('80px') : this.setMenuWidth('256px') 
     },
 
     toggleCollapsed() {
