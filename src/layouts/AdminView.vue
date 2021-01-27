@@ -59,7 +59,7 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;

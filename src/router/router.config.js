@@ -17,10 +17,16 @@ export const asyncRouterMap = [
   { 
     path: '/ministry',
     name: 'ministry',
-    component: () => import('/@/views/infrastructure/ministry.vue')
+    component: () => import('/@/views/infrastructure/ministry/index.vue')
   },
   ]
-}
+},
+ {
+   path: '/:pathMatch(.*)*',
+   name: '404', 
+   redirect: '/404',
+   hidden: true
+  }
 ]
 /*
  *基础路由
@@ -33,7 +39,7 @@ export const constantRouterMap = [
   redirect: '/user/login',
   children: [
   {
-    path: 'login',
+    path: '/login',
     name: 'login',
     component: () => import('/@/views/user/Login.vue')
   },
@@ -47,6 +53,6 @@ export const constantRouterMap = [
 {
   path: '/500',
   component: () => import('/@/views/common/500.vue')
-}
-] 
+},
+  ] 
 
