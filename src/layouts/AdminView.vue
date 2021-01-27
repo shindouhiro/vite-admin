@@ -1,14 +1,12 @@
 <template>
   <div id="container">
     <div id="content">
-      <transition name="fade">
-      <div id="aside" style="width: 250px" ref="aside">
+      <div id="aside" style="width: 256px" ref="aside">
         <Menu :collapsed="collapsed" />
       </div>
-      </transition>
       <div id="main">
         <div id="header">
-          <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
+          <a-button @click="toggleCollapsed" class="toggle-collapsed" >
             <MenuUnfoldOutlined v-if="collapsed" />
             <MenuFoldOutlined v-else />
           </a-button>
@@ -38,7 +36,7 @@ export default {
   },
   methods: {
     toggleWidth(collapsed) {
-      !collapsed?  this.$refs.aside.style.width='80px' :  this.$refs.aside.style.width='250px'
+      !collapsed?  this.$refs.aside.style.width='80px' :  this.$refs.aside.style.width='256px'
     },
 
     toggleCollapsed() {
@@ -48,7 +46,18 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+.ant-btn:hover, .ant-btn:focus {
+  color: #828282;
+}
+.toggle-collapsed {
+  font-size: 20px;
+  border: 0;
+  margin-left: 4px;
+  width: 50px;
+  height: 64px;
+}
+
 #container {
   height: 100vh;
   display: flex;
@@ -56,20 +65,17 @@ export default {
 }
 
 #header {
-  height: 100px;
-  background: lightpink;
+  height: 64px;
   flex-shrink: 0;
+  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
 }
 #content {
   flex: 1;
   display: flex;
 }
-#aside {
-  background: #001529;
 
-}
+
 #main {
-  background: lightyellow;
   flex: 1;
 }
 </style>

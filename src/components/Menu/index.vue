@@ -4,6 +4,7 @@
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed"
+      class="menu"
     >
       <a-menu-item key="1">
         <PieChartOutlined />
@@ -78,3 +79,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.menu {
+  height: 100vh
+}
+</style>
