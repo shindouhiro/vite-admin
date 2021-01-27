@@ -56,16 +56,7 @@ request.interceptors.response.use((response) => {
   return response.data
 }, errorHandler)
 
-const installer = {
-  vm: {},
-  install(Vue) {
-    Vue.use(VueAxios, request)
-  }
-}
+
 
 export default request
 
-export {
-  installer as VueAxios,
-  request as axios
-}
