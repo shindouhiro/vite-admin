@@ -19,6 +19,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
+
         <menu-unfold-outlined
           v-if="collapsed"
           class="trigger"
@@ -27,9 +28,15 @@
         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       </a-layout-header>
       <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+        style=" margin: 0 16px"
       >
-      <router-view />
+      <a-breadcrumb style="margin: 16px 0">
+        <a-breadcrumb-item>User</a-breadcrumb-item>
+        <a-breadcrumb-item>Bill</a-breadcrumb-item>
+      </a-breadcrumb>
+      <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+        <router-view />
+      </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
