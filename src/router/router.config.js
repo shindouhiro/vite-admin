@@ -13,7 +13,12 @@ export const asyncRouterMap = [
     path: '/dashboard/workplace',
     name: 'dashboard',
     component: () => import('/@/views/Home.vue')
-  }
+  },
+  { 
+    path: '/ministry',
+    name: 'ministry',
+    component: () => import('/@/views/infrastructure/ministry.vue')
+  },
   ]
 }
 ]

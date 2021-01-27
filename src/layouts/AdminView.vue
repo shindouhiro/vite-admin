@@ -1,84 +1,83 @@
 <template>
-  <div id="container">
-    <div id="content">
-      <div id="aside" style="width: 256px" ref="aside">
-        <Menu :collapsed="collapsed" />
-      </div>
-      <div id="main">
-        <div id="header">
-          <a-button @click="toggleCollapsed" class="toggle-collapsed" >
-            <MenuUnfoldOutlined v-if="collapsed" />
-            <MenuFoldOutlined v-else />
-          </a-button>
-          header
-        </div>
-        <router-view></router-view>
-      </div>
-    </div>
-  </div>
+  <a-layout id="components-layout-demo-custom-trigger">
+    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+      <div class="logo" />
+      <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
+        <a-menu-item key="1">
+          <user-outlined />
+          <span>nav 1</span>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <video-camera-outlined />
+          <span>nav 2</span>
+        </a-menu-item>
+        <a-menu-item key="3">
+          <upload-outlined />
+          <span>nav 3</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0">
+        <menu-unfold-outlined
+          v-if="collapsed"
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+      </a-layout-header>
+      <a-layout-content
+        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+      >
+      <router-view />
+      </a-layout-content>
+    </a-layout>
+  </a-layout>
 </template>
 <script>
-import { defineAsyncComponent } from 'vue'
 import {
-  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
   MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from '@ant-design/icons-vue';
+
 export default {
   components: {
-    Menu: defineAsyncComponent(() => import("/@/components/Menu/index.vue")),
-    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
     MenuUnfoldOutlined,
+    MenuFoldOutlined,
   },
   data() {
     return {
+      selectedKeys: ['1'],
       collapsed: false,
-    }
+    };
   },
-  methods: {
-    setMenuWidth(width) {
-     this.$refs.aside.style.width = width
-    },
-    toggleWidth(collapsed) {
-      !collapsed?  this.setMenuWidth('80px') : this.setMenuWidth('256px') 
-    },
-
-    toggleCollapsed() {
-      this.toggleWidth(this.collapsed)
-      this.collapsed = !this.collapsed;
-    },
-  },
-}
+};
 </script>
-<style scoped lang="scss">
-.ant-btn:hover, .ant-btn:focus {
-  color: #828282;
-}
-.toggle-collapsed {
-  font-size: 20px;
-  border: 0;
-  margin-left: 4px;
-  width: 50px;
-  height: 64px;
+<style>
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-#container {
+.ant-layout {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+}
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
 }
 
-#header {
-  height: 64px;
-  flex-shrink: 0;
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-}
-#content {
-  flex: 1;
-  display: flex;
-}
-
-
-#main {
-  flex: 1;
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
 }
 </style>
